@@ -7,7 +7,7 @@ if (!isset($_GET['id'])) {
     header("Location: kliping_daftar.php");
     exit();
 }
-//Test
+//Test 123
 $id = $_GET['id'];
 
 // Auto-repair database: Tambah kolom lokasi fisik jika belum ada
