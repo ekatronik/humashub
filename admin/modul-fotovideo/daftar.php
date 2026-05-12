@@ -175,6 +175,7 @@ function getDirectImageUrl($url) {
                         </td>
                         <td>
                             <div style="display: flex; gap: 8px;">
+                                <a href="detail.php?id=<?php echo $d['id']; ?>" class="btn-circle btn-circle-view" title="Lihat Detail" style="background: #f1f5f9; color: #64748b; border: none;"><i class="fas fa-eye"></i></a>
                                 <a href="?delete=<?php echo $d['id']; ?>" onclick="return confirm('Hapus dokumentasi ini?')" class="btn-circle btn-circle-delete" title="Hapus"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>

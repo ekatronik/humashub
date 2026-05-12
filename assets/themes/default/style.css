@@ -8,7 +8,7 @@
     --text-main: #333;
     --text-muted: #7f8c8d;
     --shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-    --border-radius: 24px;
+    --border-radius: 7px;
 }
 
 * {
@@ -297,7 +297,7 @@ body {
 /* Tables */
 .table-wrapper {
     background: white;
-    border-radius: 10px;
+    border-radius: 7px;
     border: 1px solid #f0f0f0;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);

@@ -28,6 +28,7 @@ $stmt_att->execute([$id]);
 $attendance = $stmt_att->fetchAll();
 $rek_att = array_filter($attendance, fn($a) => $a['level'] === 'Rektorat');
 $fak_att = array_filter($attendance, fn($a) => $a['level'] === 'Fakultas');
+$oth_att = array_filter($attendance, fn($a) => $a['level'] === 'Lainnya');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $event_name = $_POST['event_name'];
@@ -74,6 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_POST['fak_position'] as $index => $pos) {
                 if (!empty($pos) && !empty($_POST['fak_name'][$index])) {
                     $stmt_att_insert->execute([$id, 'Fakultas', $pos, $_POST['fak_name'][$index]]);
+                }
+            }
+        }
+        if (!empty($_POST['other_position'])) {
+            foreach ($_POST['other_position'] as $index => $pos) {
+                if (!empty($pos) && !empty($_POST['other_name'][$index])) {
+                    $stmt_att_insert->execute([$id, 'Lainnya', $pos, $_POST['other_name'][$index]]);
                 }
             }
         }
@@ -205,6 +213,27 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY name ASC")->fetchAl
                             </div>
                             <button type="button" class="btn-add-row" onclick="addFakultasRow()"><i class="fas fa-plus"></i> Tambah Pimpinan Fakultas</button>
                         </div>
+
+                        <!-- Tokoh Lainnya -->
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; margin-top: 20px;">
+                            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--navy);">Tokoh/Pejabat Lainnya</h4>
+                            <div id="other-container">
+                                <?php foreach ($oth_att as $att): ?>
+                                <div class="dynamic-row">
+                                    <div class="field-group" style="margin-bottom:0;">
+                                        <label>Jabatan</label>
+                                        <input type="text" name="other_position[]" class="stitch-select" value="<?php echo htmlspecialchars($att['position']); ?>">
+                                    </div>
+                                    <div class="field-group" style="margin-bottom:0;">
+                                        <label>Nama Tokoh</label>
+                                        <input type="text" name="other_name[]" class="stitch-select" value="<?php echo htmlspecialchars($att['person_name']); ?>">
+                                    </div>
+                                    <button type="button" class="btn-remove-row" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <button type="button" class="btn-add-row" onclick="addOtherRow()"><i class="fas fa-plus"></i> Tambah Tokoh Lainnya</button>
+                        </div>
                     </div>
 
                     <!-- Card D -->
@@ -322,6 +351,22 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY name ASC")->fetchAl
                 </div>
                 <div class="field-group" style="margin-bottom:0;">
                     <input type="text" name="fak_name[]" class="stitch-select" placeholder="Nama lengkap & gelar">
+                </div>
+                <button type="button" class="btn-remove-row" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+            `;
+            container.appendChild(row);
+        }
+
+        function addOtherRow() {
+            const container = document.getElementById('other-container');
+            const row = document.createElement('div');
+            row.className = 'dynamic-row';
+            row.innerHTML = `
+                <div class="field-group" style="margin-bottom:0;">
+                    <input type="text" name="other_position[]" class="stitch-select" placeholder="Jabatan/Instansi">
+                </div>
+                <div class="field-group" style="margin-bottom:0;">
+                    <input type="text" name="other_name[]" class="stitch-select" placeholder="Nama lengkap & gelar">
                 </div>
                 <button type="button" class="btn-remove-row" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
             `;

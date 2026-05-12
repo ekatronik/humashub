@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Activity Documentation Detail - UIN Ar-Raniry Newsroom</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;500;700&amp;family=Nunito+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-secondary-fixed-variant": "#4a4538", "surface-dim": "#dbd7cf", "surface-container-low": "#f5f1ea", "on-secondary-fixed": "#1e1a13", "inverse-surface": "#2e3230", "on-primary-container": "#d8f0de", "secondary-fixed-dim": "#d4ccbf", "tertiary-container": "#c4a66a", "on-primary-fixed-variant": "#2a6038", "on-secondary": "#ffffff", "on-secondary-container": "#5e5548", "surface-container-lowest": "#ffffff", secondary: "#6b6358", "tertiary-fixed-dim": "#dcc48e", error: "#b83230", "inverse-primary": "#8ecf9e", "on-tertiary-fixed-variant": "#554020", "on-surface-variant": "#4a4e4a", "surface-tint": "#4a7c59", "surface-container-highest": "#e4e0d8", "on-error-container": "#690005", primary: "#4a7c59", surface: "#faf6f0", outline: "#74796e", "surface-bright": "#faf6f0", "outline-variant": "#c4c8bc", "on-primary": "#ffffff", "error-container": "#ffdad8", "primary-fixed-dim": "#8ecf9e", "inverse-on-surface": "#f5f0e8", "primary-fixed": "#c8e8d0", "primary-container": "#78a886", "tertiary-fixed": "#f8e0a8", "surface-container-high": "#eae6de", "on-background": "#2e3230", "on-primary-fixed": "#002110", "on-error": "#ffffff", background: "#faf6f0", "on-tertiary-fixed": "#221a05", "surface-container": "#f0ece4", "secondary-fixed": "#f0e8db", "on-surface": "#2e3230", "on-tertiary-container": "#554020", tertiary: "#705c30", "surface-variant": "#e4e0d8", "secondary-container": "#f0e8db", "on-tertiary": "#ffffff"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}, spacing: {"container-max": "1280px", xs: "4px", xl: "40px", xxl: "64px", "margin-mobile": "16px", md: "16px", gutter: "24px", lg: "24px", base: "4px", sm: "8px"}, fontFamily: {"display-lg": ["Hanken Grotesk"], "body-lg": ["Inter"], "title-lg": ["Inter"], "headline-md": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "body-md": ["Inter"], "headline-lg": ["Hanken Grotesk"], "label-md": ["Inter"], headline: ["Literata"], display: ["Literata"], body: ["Nunito Sans"], label: ["Nunito Sans"]}, fontSize: {"display-lg": ["48px", {lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700"}], "body-lg": ["16px", {lineHeight: "1.6", fontWeight: "400"}], "title-lg": ["18px", {lineHeight: "1.5", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "1.3", fontWeight: "600"}], "headline-lg-mobile": ["24px", {lineHeight: "1.2", fontWeight: "600"}], "body-md": ["14px", {lineHeight: "1.6", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "1.2", fontWeight: "600"}], "label-md": ["12px", {lineHeight: "1", letterSpacing: "0.05em", fontWeight: "500"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for gallery if needed, keeping it clean */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bec9be;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6f7a70;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden flex h-screen w-full">
+<!-- SideNavBar (from JSON) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-screen py-lg z-40 bg-surface dark:bg-on-background w-64 bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant flat no shadows">
+<div class="px-lg mb-xl flex flex-col gap-sm">
+<h2 class="font-display-lg text-title-lg font-bold text-primary dark:text-primary-fixed">UIN Ar-Raniry</h2>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">News &amp; Documentation</p>
+</div>
+<nav class="flex-1 px-sm flex flex-col gap-xs overflow-y-auto">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 scale-98 active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 scale-98 active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="font-body-md text-body-md">Newspaper Clipping</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 scale-98 active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">language</span>
+<span class="font-body-md text-body-md">Online Publication</span>
+</a>
+<!-- ACTIVE TAB: Activity Documentation (Matching Page Intent) -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container dark:bg-primary-container text-on-primary-container font-semibold rounded-lg scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gallery_thumbnail</span>
+<span class="font-body-md text-body-md">Activity Documentation</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 scale-98 active:scale-95 rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Archive</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-lg border-t border-outline-variant flex flex-col gap-sm">
+<button class="w-full py-sm px-md bg-secondary-container text-on-secondary-container font-title-lg text-title-lg rounded-lg hover:bg-secondary-fixed transition-colors flex items-center justify-center gap-sm">
+                Export Report
+            </button>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-error transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 lg:ml-64 relative">
+<!-- TopNavBar (from JSON) -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-md md:px-lg h-16">
+<!-- Mobile Menu Trigger & Branding -->
+<div class="flex items-center gap-md">
+<button class="lg:hidden text-on-surface-variant p-sm rounded-full hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed">UIN Ar-Raniry Newsroom</span>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 p-sm rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 p-sm rounded-full cursor-pointer active:opacity-80 mr-sm">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant shadow-sm cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-background">
+<div class="max-w-container-max mx-auto w-full p-md md:p-lg xl:p-xl flex flex-col gap-lg">
+<!-- Back Action Context -->
+<div class="w-full pt-sm">
+<a class="inline-flex items-center gap-xs text-primary font-title-lg text-title-lg hover:underline transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                        Back to Activity Documentation Gallery
+                    </a>
+</div>
+<!-- Hero Header Section -->
+<section class="w-full rounded-xl overflow-hidden shadow-sm border border-outline-variant bg-surface-container-lowest relative group">
+<div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[3/1] w-full bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="A sweeping wide-angle photograph of a prestigious academic conference hall in an Indonesian Islamic university setting. The room is filled with attendees focusing on a brightly lit stage. The lighting is professional, high-key, and creates a bright, modern light-mode aesthetic. The color palette features natural wood tones, crisp white architectural details, and subtle hints of deep green from university banners. The mood is authoritative, organized, and deeply engaging, reflecting a significant institutional event." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN51u4vvPjtYOethFpgi6djPz_08A72XDcHVZC7o2nZgeIlLe4poKjwKj8G5somc_Msk1j2WZSYIx-Qj1w2UdohpRagcXK1kK3v_21EF0u53s-BEAAyhcQpc7T_OMEocCJ9hxmx8GRQJOlpzlGqL4HVEQaC8AMhWXCPXQQe6Ww5L2z7eFjGs2_s5n7PxaLmvNXcf07Ym2ZYeR4Z13QBqqcXrIdO7k3i4Llhe9--UkjHwJNDRcvwH7lkUvdKnb8YI9wd6HvAQvZnwA"/>
+<!-- Subtle gradient overlay to ensure text legibility if we placed text over it, kept minimal for clean look -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+</section>
+<!-- Information Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg w-full">
+<!-- Main Content Column -->
+<div class="lg:col-span-8 flex flex-col gap-md bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-sm py-xs bg-tertiary-container text-on-tertiary-container rounded text-[10px] font-label-md uppercase tracking-wider font-bold">International Seminar</span>
+<span class="px-sm py-xs bg-surface-container text-on-surface-variant rounded text-[10px] font-label-md uppercase tracking-wider">Academic Integrity</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                            Global Perspectives on Islamic Higher Education and Digital Transformation
+                        </h1>
+<div class="w-16 h-1 bg-primary rounded-full mt-xs mb-sm"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            This comprehensive seminar brought together leading scholars, university administrators, and policy makers from across Southeast Asia to discuss the integration of digital technologies within the framework of Islamic higher education. The event aimed to establish new collaborative networks and share best practices for maintaining academic excellence while embracing modern pedagogical tools. Keynote speeches addressed the challenges of cultural preservation in the digital age, followed by focused roundtable discussions on curriculum modernization.
+                        </p>
+</div>
+<!-- Detail Card Column -->
+<div class="lg:col-span-4 flex flex-col bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-on-surface mb-md pb-sm border-b border-outline-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">info</span>
+                            Event Details
+                        </h3>
+<ul class="flex flex-col gap-md">
+<li class="flex items-start gap-md">
+<div class="p-xs bg-surface-container rounded text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline">Date &amp; Time</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">October 24, 2024</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">08:30 AM - 16:00 PM WIB</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<div class="p-xs bg-surface-container rounded text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline">Location</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">Ali Hasjmy Auditorium</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">UIN Ar-Raniry Campus, Banda Aceh</p>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<div class="p-xs bg-surface-container rounded text-on-surface-variant mt-xs">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline">Leadership in Attendance</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">Prof. Dr. Mujiburrahman, M.Ag.</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">Rector of UIN Ar-Raniry</p>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-xs">Dr. Khairuddin, M.Ag.</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">Vice Rector I for Academic Affairs</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Google Drive Gallery Section -->
+<section class="w-full mt-md bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col gap-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md pb-sm border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="p-sm bg-inverse-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[24px]">folder_shared</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Documentation Gallery</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">24 Items synchronized from Google Workspace</p>
+</div>
+</div>
+<button class="inline-flex items-center justify-center gap-xs px-md py-sm bg-surface text-primary border border-outline-variant rounded-lg font-title-lg text-title-lg hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                            Open in Drive
+                        </button>
+</div>
+<!-- Photo Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-md w-full">
+<!-- Image Item 1 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A medium shot of an academic speaker presenting at a podium inside a well-lit auditorium. The speaker is actively engaging the audience. The background features a large projection screen displaying presentation slides. The lighting is bright and even, highlighting the professional atmosphere. The color palette focuses on crisp whites, neutral grays, and the warm wood tones of the podium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQjwHw2elYBA9Fmc39KMFkxYd-JzDcBZlke8VUpMWuj-T-wikmEDxGpVCwlKpSLB1eJ9WEckrJzXh-us6O5Dt5Zz03LIHFJWl3fdpTTexQxp7ygevXvZvAGebkVoiUQMJx4JE6d9MXsvgZmktE54RjbzgCuftU1G1cWLvLvpDQdCAbBIHirLKOQee1DbXbneqNYpKJuTwXKc1mnF5nuGY_tHH1wVlNokyNIvWrmQuldOn_Obcq3PNxGdOwdBLOLt2JT88a2wI10QE"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+<!-- Image Item 2 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide angle photograph of attendees seated in rows during an academic seminar. The participants are focused and taking notes. The room is flooded with soft, diffused white light from overhead fixtures, creating a clean, high-visibility environment typical of modern university halls. The aesthetic is orderly and professional, using a palette dominated by the soft grays of the seating and bright white of the walls." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGqz3PvWEhWE7QXXHLlyNZKETBknzYmyL7cuRmMG1P8u2doUtsuXmSVKRP3udJdEaOho08T9uHNi6ykwQvGVfXjVx8UTwc0eID6sTHkPIpnNmnJrviP5GHrPJINZSFL0ioBugDJKBR3d1O1WaZfYcJ7Yd8c6Clr_jhE9lCnRnlrvyY5oRv5GEkJ3luNXz805v2ly9BUXwFluHFA2r-5lpTFyeXzewuIzuj4yyANPp_KeM1Thd7VTHIjCAHhqsU90KM7wdG5tZaXYg"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+<!-- Image Item 3 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of two academic professionals exchanging a handshake and smiling warmly in a bright conference setting. The lighting is natural and flattering, emphasizing connection and collaboration. The background is slightly blurred (bokeh effect) showing other attendees in a light, airy atrium space. The overall mood is positive, respectful, and deeply professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHvPdKjrO_vYeWlH2Q0l8dPxvIxtVOksEWiQ2-Vkw06eAlBM7bLnnu7f7WT0I2WAKIoysY1I6yRYvWuM6tKJlAzFzIr40ZkZthmxe1UHSRvQnW4IdlyluXyIXLKtGdUvXi9tHvOjNRcGW00tAg5hoRO7xYzSqa4TCcuXbfwcPUkC9giAq-Ca03VN8E-y6D40bgMa_N1JNsnkHnhC7sOu0mksp0lHYjhXerwT1tYG1AKnRlpUV_piofowlGm0HSUgOSljO8iuoSln0"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+<!-- Image Item 4 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A flat-lay perspective photograph of a seminar registration desk. The scene shows neatly arranged name badges, professional folders, and pens on a clean white table surface. Soft, indirect light illuminates the scene, casting very soft shadows and enhancing the clean, minimalist light-mode aesthetic. The composition implies meticulous organization and academic readiness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC70V8oFaOVlBLz__On1pY2SiPh5fJj7umBY_6QW4PT68FGhAsm9WiMvxyZPqwGl5DeoOBky42mHNcIFL6HFvtnZvSEhSffNpC1sjjO44pLMNfdgDtneFtgxna9WbCXTeQUxTCiyMQE2euILn6gUIFgVQ4P9Zk0AT5B3mDhyirRM6JyeXolBHr25PWezEo35LW_-Y3Dz-AITSE5ToivZZMFou1GN4aJwsPy6k7GvjpOOcrDIUvWvtgCHm0KXcNMmjtUP6Bb_d1mM2o"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+<!-- Image Item 5 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A photograph of a group of university leaders seated at a long conference table during a formal signing ceremony. They are dressed in formal academic or professional attire. The room is brightly lit with a sophisticated, light-mode ambiance. The focus is sharp on the documents being signed, with subtle hints of university branding in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXJpYSXwQvadW42Aaq4KCLo2SHlogGaRVOVOyEm9RLDeKOViBvDLwM3ksAnLUWBPDkY9azFhY7F2qI526JihvgFFc7laYYuPzRCCU5t8kp20cF-gNVk6_cTtxLFjMmzeTfCBkxnHFV0dgzPc403hKsilIfePqgQKh9tzcyqL84VW3Lpa9Eq0-zrb5QOZZwOmaNvQR2rW4R5554wHvX6WdxHzAuVVP6R_VYHWPpAc-wEQTUTVYdBLBywQi2n-8zQ1m22xNiX_KBTbM"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+<!-- Image Item 6 -->
+<div class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container cursor-pointer border border-transparent hover:border-primary transition-all duration-300 shadow-sm hover:shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A serene photograph of the exterior of an impressive, modern academic building under a clear daytime sky. The architecture features clean lines, white facades, and large glass windows reflecting the sky. The lighting is bright sunlight, casting sharp but pleasant shadows that emphasize the structure's modern, minimalist aesthetic. The scene conveys institutional stability and contemporary education." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8blz3p9kNLySWT_YKu9C_iEJEtwVlsPbnbeD0ysi4T5m0KBaCV6Tt4DO_AY63ehqIiMm4MZ8xnHt2b1Kp6zK_vVmMgkE_ATZgyW3hFxWAu9hJ7Rt8Etfv742f6UiQlpm9s-cN18g1kvbGP_IyVEOTVoFhqTzrL4gOkKrh0825YCzf6Z057IsEvc3VxrIF5xNDtN-RrPqlT-t-iCNbVeXF9s5E7MY_MTGZeX8-BvTnRBmFExV_jhbOK9oc-YvQH9ywFa6zzicqQyQ"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md text-[32px] transition-opacity duration-300">zoom_in</span>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-center pt-sm">
+<button class="px-lg py-sm bg-surface-container-low text-primary font-title-lg text-title-lg rounded-full hover:bg-surface-container transition-colors duration-200 shadow-sm border border-outline-variant flex items-center gap-xs">
+                            Load More Photos
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Footer (from JSON) -->
+<footer class="bg-surface-container-lowest dark:bg-on-background border-t border-outline-variant full-width bottom-0 mt-xl flat no shadows">
+<div class="w-full py-md px-lg flex flex-col md:flex-row justify-between items-center text-center md:text-left max-w-container-max mx-auto">
+<div class="mb-sm md:mb-0">
+<span class="font-display-lg text-label-md font-bold text-primary">UIN Ar-Raniry</span>
+<p class="font-label-md text-label-md text-on-surface-variant mt-xs">© 2024 UIN Ar-Raniry News Monitoring Platform. All rights reserved.</p>
+</div>
+<nav class="flex gap-md font-label-md text-label-md text-on-surface-variant dark:text-surface-variant">
+<a class="hover:text-primary underline transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="hover:text-primary underline transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="hover:text-primary underline transition-opacity duration-200" href="#">Administrator Login</a>
+</nav>
+</div>
+</footer>
+</main>
+</div>
+</body></html>
