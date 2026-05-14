@@ -42,12 +42,14 @@ if (empty($chart_datasets)) {
     $chart_datasets[] = ['label' => 'No Data', 'data' => array_fill(0, 12, 0)];
 }
 
-// 5 Kliping Terakhir
-$recent_clippings = $pdo->query("SELECT c.*, m.media_name, cat.name as category_name 
+// 5 Kliping Terakhir (Berdasarkan Tanggal)
+$recent_clippings = $pdo->query("SELECT c.*, m.media_name, GROUP_CONCAT(cat.name SEPARATOR ', ') as category_names 
                                  FROM clippings c 
-                                 JOIN media m ON c.media_id = m.id 
-                                 JOIN categories cat ON c.category_id = cat.id 
-                                 ORDER BY c.created_at DESC LIMIT 5")->fetchAll();
+                                 LEFT JOIN media m ON c.media_id = m.id 
+                                 LEFT JOIN clipping_category_rel rel ON c.id = rel.clipping_id
+                                 LEFT JOIN categories cat ON rel.category_id = cat.id 
+                                 GROUP BY c.id
+                                 ORDER BY c.clipping_date DESC LIMIT 5")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -122,7 +124,6 @@ $recent_clippings = $pdo->query("SELECT c.*, m.media_name, cat.name as category_
                         </thead>
                         <tbody>
                             <?php foreach ($recent_clippings as $rc): ?>
-                            <?php $badge_num = ($rc['category_id'] % 6) + 1; ?>
                             <tr>
                                 <td>
                                     <div class="col-judul" style="font-size: 14px;"><?php echo $rc['title']; ?></div>
@@ -132,10 +133,16 @@ $recent_clippings = $pdo->query("SELECT c.*, m.media_name, cat.name as category_
                                 </td>
                                 <td>
                                     <div style="font-weight: 600; color: var(--navy); font-size: 13px;">
-                                        <?php echo $rc['media_name']; ?>
+                                        <?php echo $rc['media_name'] ?? '<span style="color:#94a3b8; font-weight:400; font-style:italic;">Media dihapus</span>'; ?>
                                     </div>
                                 </td>
-                                <td><span class="badge badge-soft-<?php echo $badge_num; ?>"><?php echo $rc['category_name']; ?></span></td>
+                                <td>
+                                    <?php if ($rc['category_names']): ?>
+                                        <span class="badge badge-soft-1"><?php echo $rc['category_names']; ?></span>
+                                    <?php else: ?>
+                                        <span class="badge badge-soft-1">Uncategorized</span>
+                                    <?php endif; ?>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
