@@ -1,5 +1,5 @@
 <?php
-// admin/index.php
+// Admin Dashboard - Testing Edit
 require_once __DIR__ . '/../includes/auth.php';
 checkAccess();
 
@@ -8,6 +8,20 @@ $full_name = $_SESSION['full_name'] ?? 'Guest';
 
 // Counts
 $total_kliping = $pdo->query("SELECT COUNT(*) FROM clippings")->fetchColumn();
+$total_news = $pdo->query("SELECT COUNT(*) FROM news_online")->fetchColumn();
+$total_docs = $pdo->query("SELECT COUNT(*) FROM documentation")->fetchColumn();
+
+// Recent Activity (Today)
+$today = date('Y-m-d');
+$stmt_logs = $pdo->prepare("SELECT l.*, u.full_name, r.role_name 
+                           FROM activity_logs l 
+                           JOIN users u ON l.user_id = u.id 
+                           LEFT JOIN roles r ON u.role_id = r.id 
+                           WHERE DATE(l.created_at) = ?
+                           ORDER BY l.created_at DESC 
+                           LIMIT 5");
+$stmt_logs->execute([$today]);
+$recent_logs = $stmt_logs->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -52,7 +66,7 @@ $total_kliping = $pdo->query("SELECT COUNT(*) FROM clippings")->fetchColumn();
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <div style="color: var(--text-muted); font-size: 14px; margin-bottom: 5px;">Link Berita</div>
-                        <h2 style="font-size: 28px; font-weight: 800;">0</h2>
+                        <h2 style="font-size: 28px; font-weight: 800;"><?php echo $total_news; ?></h2>
                     </div>
                     <i class="fas fa-link fa-2x" style="color: rgba(251, 176, 59, 0.2);"></i>
                 </div>
@@ -61,7 +75,7 @@ $total_kliping = $pdo->query("SELECT COUNT(*) FROM clippings")->fetchColumn();
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <div style="color: var(--text-muted); font-size: 14px; margin-bottom: 5px;">Foto/Video</div>
-                        <h2 style="font-size: 28px; font-weight: 800;">0</h2>
+                        <h2 style="font-size: 28px; font-weight: 800;"><?php echo $total_docs; ?></h2>
                     </div>
                     <i class="fas fa-camera fa-2x" style="color: rgba(52, 152, 219, 0.2);"></i>
                 </div>
@@ -69,11 +83,34 @@ $total_kliping = $pdo->query("SELECT COUNT(*) FROM clippings")->fetchColumn();
         </div>
 
         <div class="card">
-            <h3 style="margin-bottom: 20px;">Aktivitas Terkini</h3>
-            <div style="padding: 40px; text-align: center; color: var(--text-muted);">
-                <i class="fas fa-info-circle fa-2x" style="margin-bottom: 15px; opacity: 0.3;"></i>
-                <p>Belum ada aktivitas tercatat hari ini.</p>
-            </div>
+            <h3 style="margin-bottom: 20px;">Aktivitas Terkini (Hari Ini)</h3>
+            <?php if (!empty($recent_logs)): ?>
+                <div class="activity-list">
+                    <?php foreach ($recent_logs as $log): ?>
+                        <div style="display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; align-items: center;">
+                            <div style="width: 35px; height: 35px; border-radius: 8px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 14px; font-weight: 600;"><?php echo htmlspecialchars($log['activity']); ?></div>
+                                <div style="font-size: 11px; color: var(--text-muted);">
+                                    <span style="font-weight: 700; color: var(--navy);"><?php echo $log['full_name']; ?></span> &bull; 
+                                    <?php echo date('H:i', strtotime($log['created_at'])); ?> &bull; 
+                                    <?php echo $log['module']; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div style="margin-top: 15px; text-align: center;">
+                    <a href="modul-admin/logs.php" style="font-size: 12px; color: var(--primary); font-weight: 600; text-decoration: none;">Lihat Semua Log <i class="fas fa-arrow-right"></i></a>
+                </div>
+            <?php else: ?>
+                <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+                    <i class="fas fa-info-circle fa-2x" style="margin-bottom: 15px; opacity: 0.3;"></i>
+                    <p>Belum ada aktivitas tercatat hari ini.</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </body>

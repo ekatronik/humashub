@@ -1,5 +1,5 @@
 <?php
-// admin/kliping_edit.php
+// admin/kliping_edit.php - Testing Edit
 require_once __DIR__ . '/../../includes/auth.php';
 checkAccess(['Super Admin', 'Pranata Humas', 'Operator Kliping']);
 

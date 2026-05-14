@@ -21,12 +21,29 @@ if (isset($_GET['delete'])) {
 }
 
 $filter_year = $_GET['year'] ?? '';
+$start_date = $_GET['start_date'] ?? '';
+$end_date = $_GET['end_date'] ?? '';
+$quarter = $_GET['quarter'] ?? '';
+$keyword = $_GET['q'] ?? '';
 $filter_category = $_GET['category'] ?? '';
 $filter_location = $_GET['location'] ?? '';
 
+// Handle Quarter logic
+if ($quarter && $filter_year) {
+    switch ($quarter) {
+        case '1': $start_date = "$filter_year-01-01"; $end_date = "$filter_year-03-31"; break;
+        case '2': $start_date = "$filter_year-04-01"; $end_date = "$filter_year-06-30"; break;
+        case '3': $start_date = "$filter_year-07-01"; $end_date = "$filter_year-09-30"; break;
+        case '4': $start_date = "$filter_year-10-01"; $end_date = "$filter_year-12-31"; break;
+    }
+}
+
 $where_clauses = [];
 $params = [];
-if ($filter_year) { $where_clauses[] = "YEAR(d.event_date) = ?"; $params[] = $filter_year; }
+if ($filter_year && !$start_date && !$end_date) { $where_clauses[] = "YEAR(d.event_date) = ?"; $params[] = $filter_year; }
+if ($start_date) { $where_clauses[] = "d.event_date >= ?"; $params[] = $start_date; }
+if ($end_date)   { $where_clauses[] = "d.event_date <= ?"; $params[] = $end_date; }
+if ($keyword)    { $where_clauses[] = "d.event_name LIKE ?"; $params[] = "%$keyword%"; }
 if ($filter_category) { 
     $where_clauses[] = "d.id IN (SELECT documentation_id FROM documentation_category_rel WHERE category_id = ?)"; 
     $params[] = $filter_category; 
@@ -84,40 +101,41 @@ function getDirectImageUrl($url) {
             <a href="tambah.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Dokumentasi</a>
         </header>
 
-        <form method="GET" class="filter-bar" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 30px; display: flex; gap: 15px; align-items: flex-end; box-shadow: var(--shadow);">
+        <form method="GET" class="filter-bar" style="background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; align-items: end; box-shadow: var(--shadow);">
             <div class="filter-group">
-                <label style="display: block; font-size: 12px; margin-bottom: 5px;">Tahun</label>
+                <label style="display: block; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 5px; text-transform: uppercase;">Tahun</label>
                 <select name="year" class="stitch-select">
-                    <option value="">Semua</option>
+                    <option value="">Pilih Tahun</option>
                     <?php foreach ($years as $y): ?>
                         <option value="<?php echo $y['yr']; ?>" <?php echo $filter_year == $y['yr'] ? 'selected' : ''; ?>><?php echo $y['yr']; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="filter-group">
-                <label style="display: block; font-size: 12px; margin-bottom: 5px;">Kategori</label>
-                <select name="category" class="stitch-select">
+                <label style="display: block; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 5px; text-transform: uppercase;">Triwulan (TW)</label>
+                <select name="quarter" class="stitch-select">
                     <option value="">Semua</option>
-                    <?php foreach ($categories_list as $cat): ?>
-                        <option value="<?php echo $cat['id']; ?>" <?php echo $filter_category == $cat['id'] ? 'selected' : ''; ?>><?php echo $cat['name']; ?></option>
-                    <?php endforeach; ?>
+                    <option value="1" <?php echo $quarter == '1' ? 'selected' : ''; ?>>Tw 1 (Jan-Mar)</option>
+                    <option value="2" <?php echo $quarter == '2' ? 'selected' : ''; ?>>Tw 2 (Apr-Jun)</option>
+                    <option value="3" <?php echo $quarter == '3' ? 'selected' : ''; ?>>Tw 3 (Jul-Sep)</option>
+                    <option value="4" <?php echo $quarter == '4' ? 'selected' : ''; ?>>Tw 4 (Okt-Des)</option>
                 </select>
             </div>
             <div class="filter-group">
-                <label style="display: block; font-size: 12px; margin-bottom: 5px;">Jenis Lokasi</label>
-                <select name="location" class="stitch-select">
-                    <option value="">Semua</option>
-                    <option value="Internal Kampus" <?php echo $filter_location == 'Internal Kampus' ? 'selected' : ''; ?>>Internal Kampus</option>
-                    <option value="Lokal Daerah" <?php echo $filter_location == 'Lokal Daerah' ? 'selected' : ''; ?>>Lokal Daerah</option>
-                    <option value="Nasional" <?php echo $filter_location == 'Nasional' ? 'selected' : ''; ?>>Nasional</option>
-                    <option value="Internasional" <?php echo $filter_location == 'Internasional' ? 'selected' : ''; ?>>Internasional</option>
-                </select>
+                <label style="display: block; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 5px; text-transform: uppercase;">Dari Tanggal</label>
+                <input type="date" name="start_date" class="stitch-select" value="<?php echo $start_date; ?>">
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button type="submit" class="btn btn-primary" style="height: 45px;"><i class="fas fa-search"></i> Cari</button>
-                <?php if ($filter_year || $filter_category || $filter_location): ?>
-                    <a href="daftar.php" class="btn" style="background:#eee; color:#666; height: 45px; display:flex; align-items:center;">Reset</a>
-                <?php endif; ?>
+            <div class="filter-group">
+                <label style="display: block; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 5px; text-transform: uppercase;">Sampai Tanggal</label>
+                <input type="date" name="end_date" class="stitch-select" value="<?php echo $end_date; ?>">
+            </div>
+            <div class="filter-group">
+                <label style="display: block; font-size: 11px; font-weight: 800; color: var(--navy); margin-bottom: 5px; text-transform: uppercase;">Kata Kunci</label>
+                <input type="text" name="q" class="stitch-select" placeholder="Cari kegiatan..." value="<?php echo htmlspecialchars($keyword); ?>">
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1; height: 45px;"><i class="fas fa-filter"></i></button>
+                <a href="daftar.php" class="btn" style="background:#f1f5f9; color:#64748b; height: 45px; width: 45px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-sync-alt"></i></a>
             </div>
         </form>
 

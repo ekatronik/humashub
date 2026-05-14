@@ -64,20 +64,24 @@ if ($filter_year === 'all') {
     ];
 }
 
-// 3. Grafik Berdasarkan Media (Filter by year if not 'all')
-$where_year = ($filter_year === 'all') ? "" : "WHERE YEAR(c.clipping_date) = '$filter_year'";
-$media_stats = $pdo->query("SELECT m.media_name, COUNT(*) as total 
+// 3. Grafik Berdasarkan Media
+$where_year_media = ($filter_year === 'all') ? "" : "WHERE YEAR(c.clipping_date) = '$filter_year'";
+$media_stats = $pdo->query("SELECT IFNULL(m.media_name, 'Media Lainnya') as media_name, COUNT(c.id) as total 
                             FROM clippings c 
-                            JOIN media m ON c.media_id = m.id 
-                            $where_year
-                            GROUP BY m.id")->fetchAll();
+                            LEFT JOIN media m ON c.media_id = m.id 
+                            $where_year_media
+                            GROUP BY c.media_id 
+                            ORDER BY total DESC")->fetchAll();
 
-// 4. Grafik Berdasarkan Kategori (Filter by year if not 'all')
-$cat_stats = $pdo->query("SELECT cat.name, COUNT(*) as total 
+// 4. Grafik Berdasarkan Kategori
+$where_year_cat = ($filter_year === 'all') ? "" : "WHERE YEAR(c.clipping_date) = '$filter_year'";
+$cat_stats = $pdo->query("SELECT IFNULL(cat.name, 'Tanpa Kategori') as name, COUNT(DISTINCT c.id) as total 
                           FROM clippings c 
-                          JOIN categories cat ON c.category_id = cat.id 
-                          $where_year
-                          GROUP BY cat.id")->fetchAll();
+                          LEFT JOIN clipping_category_rel rel ON c.id = rel.clipping_id 
+                          LEFT JOIN categories cat ON rel.category_id = cat.id 
+                          $where_year_cat
+                          GROUP BY cat.id 
+                          ORDER BY total DESC")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -119,15 +123,27 @@ $cat_stats = $pdo->query("SELECT cat.name, COUNT(*) as total
         <div class="grid-2">
             <div class="card">
                 <h3>Berdasarkan Media</h3>
-                <div style="height: 300px;">
-                    <canvas id="mediaChart"></canvas>
-                </div>
+                <?php if (empty($media_stats)): ?>
+                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f8fafc; border-radius: 12px; color: #94a3b8; font-weight: 600;">
+                        <i class="fas fa-chart-pie" style="margin-right: 10px;"></i> Belum ada data media.
+                    </div>
+                <?php else: ?>
+                    <div style="height: 300px;">
+                        <canvas id="mediaChart"></canvas>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="card">
                 <h3>Berdasarkan Kategori</h3>
-                <div style="height: 300px;">
-                    <canvas id="categoryChart"></canvas>
-                </div>
+                <?php if (empty($cat_stats)): ?>
+                    <div style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f8fafc; border-radius: 12px; color: #94a3b8; font-weight: 600;">
+                        <i class="fas fa-chart-bar" style="margin-right: 10px;"></i> Belum ada data kategori.
+                    </div>
+                <?php else: ?>
+                    <div style="height: 300px;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -145,6 +161,7 @@ $cat_stats = $pdo->query("SELECT cat.name, COUNT(*) as total
     });
 
     // 2. Media Chart
+    <?php if (!empty($media_stats)): ?>
     const ctxMedia = document.getElementById('mediaChart').getContext('2d');
     new Chart(ctxMedia, {
         type: 'doughnut',
@@ -157,21 +174,60 @@ $cat_stats = $pdo->query("SELECT cat.name, COUNT(*) as total
         },
         options: { responsive: true, maintainAspectRatio: false }
     });
+    <?php endif; ?>
 
     // 3. Category Chart
+    <?php if (!empty($cat_stats)): ?>
     const ctxCat = document.getElementById('categoryChart').getContext('2d');
     new Chart(ctxCat, {
         type: 'bar',
         data: {
             labels: <?php echo json_encode(array_column($cat_stats, 'name')); ?>,
             datasets: [{
-                label: 'Total',
+                label: 'Total Kliping',
                 data: <?php echo json_encode(array_column($cat_stats, 'total')); ?>,
-                backgroundColor: '#fbb03b'
+                backgroundColor: [
+                    'rgba(251, 176, 59, 0.8)',
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(46, 204, 113, 0.8)',
+                    'rgba(155, 89, 182, 0.8)',
+                    'rgba(231, 76, 60, 0.8)',
+                    'rgba(26, 188, 156, 0.8)',
+                    'rgba(52, 73, 94, 0.8)'
+                ],
+                borderColor: [
+                    '#fbb03b', '#3498db', '#2ecc71', '#9b59b6', '#e74c3c', '#1abc9c', '#34495e'
+                ],
+                borderWidth: 1,
+                borderRadius: 8,
+                barThickness: 40
             }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    padding: 12,
+                    cornerRadius: 8
+                }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { stepSize: 1, font: { weight: '600' } },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: {
+                    ticks: { font: { weight: '600' } },
+                    grid: { display: false }
+                }
+            }
+        }
     });
+    <?php endif; ?>
     </script>
 </body>
 </html>
